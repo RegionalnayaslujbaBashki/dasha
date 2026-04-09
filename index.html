@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Я люблю тебя зайка 🌸</title>
-    <!-- Подключаем шрифты и иконки -->
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            user-select: none; /* чтобы не выделялся текст случайно */
+            user-select: none;
         }
 
         body {
@@ -28,7 +26,6 @@
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="27" viewBox="0 0 24 27"><path fill="%23ff4d6d" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') 12 6, auto;
         }
 
-        /* Плавающие сердечки на фоне */
         .floating-hearts {
             position: fixed;
             top: 0;
@@ -65,7 +62,6 @@
             }
         }
 
-        /* Главный контейнер */
         .card {
             background-color: rgba(255, 250, 240, 0.9);
             backdrop-filter: blur(2px);
@@ -92,7 +88,6 @@
             }
         }
 
-        /* Заголовок */
         h1 {
             font-family: 'Dancing Script', cursive;
             font-size: 3rem;
@@ -114,7 +109,6 @@
             padding-bottom: 6px;
         }
 
-        /* Сетка с милыми картинками (иконки) */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -138,8 +132,8 @@
             box-shadow: 0 15px 25px rgba(255, 80, 120, 0.25);
         }
 
-        .cute-item i {
-            font-size: 3.8rem;
+        .cute-item div {
+            font-size: 3.5rem;
             filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.1));
             transition: all 0.2s;
         }
@@ -152,7 +146,6 @@
             font-size: 0.9rem;
         }
 
-        /* Специальное сообщение-сюрприз */
         .surprise-message {
             background: #fff0f3;
             border-radius: 60px;
@@ -193,16 +186,11 @@
             gap: 12px;
         }
 
-        .btn-compliment i {
-            font-size: 1.2rem;
-        }
-
         .btn-compliment:active {
             transform: scale(0.96);
             box-shadow: 0 2px 6px #ff5e85;
         }
 
-        /* Счетчик поцелуев */
         .kiss-counter {
             background: #ffe2eb;
             border-radius: 100px;
@@ -240,7 +228,6 @@
             transform: scale(0.95);
         }
 
-        /* Подпись и сердечко */
         .footer-love {
             margin-top: 30px;
             font-size: 0.9rem;
@@ -259,7 +246,6 @@
             100% { transform: scale(1); }
         }
 
-        /* Адаптивность */
         @media (max-width: 550px) {
             .card {
                 padding: 20px 18px 35px;
@@ -273,8 +259,43 @@
             .gallery {
                 gap: 12px;
             }
-            .cute-item i {
+            .cute-item div {
                 font-size: 2.8rem;
+            }
+        }
+
+        @keyframes floatHeartUp {
+            0% {
+                transform: translateY(0) scale(0.6);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-150px) scale(1.2);
+                opacity: 0;
+            }
+        }
+        @keyframes popOut {
+            0% {
+                transform: scale(0.2);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+        }
+        @keyframes floatKiss {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-80px) rotate(20deg);
+                opacity: 0;
             }
         }
     </style>
@@ -284,68 +305,65 @@
 <div class="floating-hearts" id="floatingHearts"></div>
 
 <div class="card">
-    <h1>Это все для тебя, зайка✨</h1>
+    <h1>Это все для тебя, зайка ✨</h1>
     <div class="sub">Для самой прекрасной булочки на свете</div>
 
-<div class="gallery">
-    <div class="cute-item" data-message="Ты мой лучик света ☀️">
-        <div style="font-size: 3.5rem;">☀️</div>
-        <span>Солнышко</span>
+    <div class="gallery">
+        <div class="cute-item" data-message="Ты мой лучик света ☀️">
+            <div>☀️</div>
+            <span>Солнышко</span>
+        </div>
+        <div class="cute-item" data-message="Твоя улыбка как мед 🍯">
+            <div>😊</div>
+            <span>Улыбка</span>
+        </div>
+        <div class="cute-item" data-message="Ты самая красивая роза 🌹">
+            <div>🌹</div>
+            <span>Нежность</span>
+        </div>
+        <div class="cute-item" data-message="С тобой мир становится цветным 🎨">
+            <div>🎨</div>
+            <span>Творчество</span>
+        </div>
+        <div class="cute-item" data-message="Ты — моя любимая мелодия 🎶">
+            <div>🎶</div>
+            <span>Гармония</span>
+        </div>
+        <div class="cute-item" data-message="Ты — самое милое чудо 🐰">
+            <div>🐰</div>
+            <span>Зайка</span>
+        </div>
     </div>
-    <div class="cute-item" data-message="Твоя улыбка как мед 🍯">
-        <div style="font-size: 3.5rem;">😊</div>
-        <span>Улыбка</span>
-    </div>
-    <div class="cute-item" data-message="Ты самая красивая роза 🌹">
-        <div style="font-size: 3.5rem;">🌹</div>
-        <span>Нежность</span>
-    </div>
-    <div class="cute-item" data-message="С тобой мир становится цветным 🎨">
-        <div style="font-size: 3.5rem;">🎨</div>
-        <span>Творчество</span>
-    </div>
-    <div class="cute-item" data-message="Ты — моя любимая мелодия 🎶">
-        <div style="font-size: 3.5rem;">🎶</div>
-        <span>Гармония</span>
-    </div>
-    <div class="cute-item" data-message="Ты — самое милое чудо 🐰">
-        <div style="font-size: 3.5rem;">🐰</div>
-        <span>Зайка</span>
-    </div>
-</div>
 
-    <!-- Интерактивная зона с комплиментами -->
     <div class="surprise-message">
         <div class="compliment-text" id="complimentDisplay">
             🌸 Нажми на кнопку, чтобы получить порцию нежности 🌸
         </div>
         <button class="btn-compliment" id="getComplimentBtn">
-            <i class="fas fa-heart"></i> Скажи что-то милое <i class="fas fa-heart"></i>
+            <span>💖</span> Скажи что-то милое <span>💖</span>
         </button>
     </div>
 
-    <!-- Счетчик поцелуев (дополнительная милота) -->
     <div class="kiss-counter">
-        <i class="fas fa-kiss-wink-heart" style="font-size: 1.6rem;"></i>
+        <span style="font-size: 1.6rem;">💋</span>
         <span>Поцелуев получено:</span>
         <span id="kissCount">0</span>
-        <button class="kiss-btn" id="kissBtn"><i class="fas fa-lips"></i> Чмок!</button>
+        <button class="kiss-btn" id="kissBtn"><span>💋</span> Чмок!</button>
     </div>
 
     <div class="footer-love">
-        <i class="fas fa-heart heartbeat" style="color:#ff4d6d;"></i> 
+        <span class="heartbeat" style="color:#ff4d6d;">❤️</span> 
         Я бесконечно люблю тебя
-        <i class="fas fa-heart heartbeat" style="color:#ff4d6d;"></i>
+        <span class="heartbeat" style="color:#ff4d6d;">❤️</span>
     </div>
 </div>
 
 <script>
-    // === Список комплиментов (очень милые фразы) ===
     const compliments = [
         "💖 Ты самая красивая девушка во вселенной! 💖",
         "🌸 Твоя улыбка заставляет мое сердце биться быстрее 🌸",
         "🍬 Ты моя самая сладкая булочка! 🍰",
-        "✨ Я влюблен в каждый день с тобой✨",
+        "✨ Я влюблен в каждый день с тобой ✨",
         "🐇 Ты такая зайка, что даже зайчики завидуют 🐇",
         "💫 С тобой я чувствую себя самым счастливым 💫",
         "🌙 Ты как самое красивое звездное небо 🌙",
@@ -353,52 +371,35 @@
         "🥰 Когда ты рядом, лето начинается раньше 🥰",
         "🌈 Ты самое белое и пушистое облачко! 🌈",
         "💋 От твоих поцелуев я таю 💋",
-        "🎀 Ты самое желанное "тук-тук" в моем сердце 🎀",
+        "🎀 Ты самое желанное «тук-тук» в моем сердце 🎀",
         "🍭 Ты самая сладкая конфетка 🍭"
     ];
 
-    // === Элементы ===
     const complimentDiv = document.getElementById('complimentDisplay');
     const complimentBtn = document.getElementById('getComplimentBtn');
     const kissBtn = document.getElementById('kissBtn');
     const kissCountSpan = document.getElementById('kissCount');
     const cuteItems = document.querySelectorAll('.cute-item');
 
-    // === Счетчик поцелуев ===
     let kisses = localStorage.getItem('sweetKisses');
-    if (kisses === null) {
-        kisses = 0;
-    } else {
-        kisses = parseInt(kisses);
-    }
+    if (kisses === null) kisses = 0;
+    else kisses = parseInt(kisses);
     kissCountSpan.innerText = kisses;
 
-    // Функция сохранения и обновления счетчика
     function updateKissCounter(increment = true) {
-        if (increment) {
-            kisses++;
-        }
+        if (increment) kisses++;
         kissCountSpan.innerText = kisses;
         localStorage.setItem('sweetKisses', kisses);
     }
 
-    // === Обработчик поцелуя (с анимацией и всплывающим уведомлением) ===
     kissBtn.addEventListener('click', (e) => {
         e.preventDefault();
         updateKissCounter(true);
-        // Создаем летящие губки (маленькая анимация для радости)
         createFloatingElement('💋', kissBtn);
-        // Показываем короткое сообщение
         showMiniToast('💕 Ты чмокнула меня в ответ! 💕');
-        // Дополнительно: если счетчик переваливает за 10, 20 и т.д. — секретный комплимент
         if (kisses === 10) {
             setTimeout(() => {
                 complimentDiv.innerHTML = "🎉 10 поцелуев! Ты самая щедрая принцесса! 👑";
-                setTimeout(() => {
-                    if (complimentDiv.innerHTML.includes("10 поцелуев")) {
-                        // вернуть случайный комплимент, но не сразу, а через 2 сек, если не нажали кнопку
-                    }
-                }, 3000);
             }, 200);
         } else if (kisses === 25) {
             setTimeout(() => {
@@ -411,46 +412,35 @@
         }
     });
 
-    // === Функция случайного комплимента с анимацией ===
     function getRandomCompliment() {
-        const randomIndex = Math.floor(Math.random() * compliments.length);
-        return compliments[randomIndex];
+        return compliments[Math.floor(Math.random() * compliments.length)];
     }
 
     function showNewCompliment() {
         const newCompliment = getRandomCompliment();
-        // Плавная смена с небольшой анимацией
         complimentDiv.style.opacity = '0';
         setTimeout(() => {
             complimentDiv.innerHTML = newCompliment;
             complimentDiv.style.opacity = '1';
-            // Добавляем эффект "сердечек" при каждом нажатии кнопки
             createHeartBurst();
         }, 120);
         complimentDiv.style.transition = 'opacity 0.12s';
     }
 
-    // === Обработчик кнопки комплиментов ===
     complimentBtn.addEventListener('click', () => {
         showNewCompliment();
-        // маленькие сердечки вокруг кнопки
         createHeartBurstAround(complimentBtn);
     });
 
-    // === Обработчик кликов по милым картинкам (с показом личного сообщения) ===
     cuteItems.forEach(item => {
         item.addEventListener('click', (e) => {
             const message = item.getAttribute('data-message') || 'Ты самая милая ❤️';
-            // Временное сообщение в области комплиментов, но с сохранением после
-            const originalText = complimentDiv.innerHTML;
             complimentDiv.style.opacity = '0';
             setTimeout(() => {
                 complimentDiv.innerHTML = `✨ ${message} ✨`;
                 complimentDiv.style.opacity = '1';
-                // через 2.5 секунды вернуть обычный комплимент, если он не был изменен кнопкой
                 setTimeout(() => {
                     if (complimentDiv.innerHTML.includes(message)) {
-                        // возвращаем случайный комплимент, чтобы не было скучно
                         complimentDiv.style.opacity = '0';
                         setTimeout(() => {
                             complimentDiv.innerHTML = getRandomCompliment();
@@ -459,12 +449,10 @@
                     }
                 }, 2800);
             }, 120);
-            // Эффект мерцания
             createHeartBurstAround(item);
         });
     });
 
-    // === Вспомогательные функции для эффектов (сердечки, губки, тосты) ===
     function createHeartBurst() {
         for (let i = 0; i < 10; i++) {
             const heart = document.createElement('div');
@@ -494,7 +482,6 @@
             heart.style.pointerEvents = 'none';
             heart.style.zIndex = '9999';
             heart.style.opacity = '1';
-            heart.style.transition = 'all 0.5s ease-out';
             heart.style.animation = `popOut 0.5s forwards`;
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 600);
@@ -543,47 +530,6 @@
         }, 1800);
     }
 
-    // Добавляем кастомные анимации в стили (динамически, чтобы точно работали)
-    const styleSheet = document.createElement("style");
-    styleSheet.textContent = `
-        @keyframes floatHeartUp {
-            0% {
-                transform: translateY(0) scale(0.6);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-150px) scale(1.2);
-                opacity: 0;
-            }
-        }
-        @keyframes popOut {
-            0% {
-                transform: scale(0.2);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-        }
-        @keyframes floatKiss {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-80px) rotate(20deg);
-                opacity: 0;
-            }
-        }
-    `;
-    document.head.appendChild(styleSheet);
-
-    // === Генерация плавающих фоновых сердечек (несколько штук) ===
     function createFloatingBgHearts() {
         const heartsContainer = document.getElementById('floatingHearts');
         for (let i = 0; i < 20; i++) {
@@ -601,12 +547,10 @@
     }
     createFloatingBgHearts();
 
-    // Инициализация: при загрузке покажем случайный комплимент
     setTimeout(() => {
         complimentDiv.innerHTML = getRandomCompliment();
     }, 300);
 
-    // Добавим эффект "дрожания" сердечка в футере
     const heartFooter = document.querySelector('.footer-love .heartbeat');
     if (heartFooter) {
         setInterval(() => {
@@ -614,9 +558,6 @@
             setTimeout(() => { heartFooter.style.transform = 'scale(1)'; }, 300);
         }, 2000);
     }
-
-    // Адаптивный ресайз для корректного отображения анимаций при клике (не обязательно)
-    window.addEventListener('resize', () => {});
 </script>
 </body>
 </html>
